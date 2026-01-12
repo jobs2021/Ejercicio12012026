@@ -1,0 +1,384 @@
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #ec4899;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #3b82f6;
+    --light-bg: #f9fafb;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar Estilos */
+.navbar {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)) !important;
+    box-shadow: var(--box-shadow);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+/* Contenedor Principal */
+.container-fluid {
+    background-color: var(--light-bg);
+}
+
+/* Card Balance */
+.balance-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+}
+
+.balance-card .card-title {
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.balance-amount {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 1rem 0;
+}
+
+.balance-card .text-muted {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Tarjetas */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.card-header h5 {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Formulario */
+.form-label {
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Botones */
+.btn-primary {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btn-outline-danger {
+    color: var(--danger-color);
+    border-color: var(--danger-color);
+    border-radius: 8px;
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+.btn-outline-secondary {
+    border-radius: 8px;
+}
+
+/* Elementos de Transacción */
+.transaccion-item {
+    padding: 1rem;
+    border-left: 4px solid var(--primary-color);
+    background-color: white;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.transaccion-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(4px);
+}
+
+.transaccion-item.ingreso {
+    border-left-color: var(--success-color);
+}
+
+.transaccion-item.egreso {
+    border-left-color: var(--danger-color);
+}
+
+.transaccion-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+}
+
+.transaccion-icon.ingreso {
+    background-color: var(--success-color);
+}
+
+.transaccion-icon.egreso {
+    background-color: var(--danger-color);
+}
+
+.transaccion-monto {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.transaccion-monto.ingreso {
+    color: var(--success-color);
+}
+
+.transaccion-monto.egreso {
+    color: var(--danger-color);
+}
+
+.transaccion-categoria {
+    display: inline-block;
+    background-color: var(--light-bg);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-right: 0.5rem;
+}
+
+.transaccion-acciones {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.transaccion-acciones button {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+}
+
+/* Categorías */
+.categoria-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.categoria-item:last-child {
+    border-bottom: none;
+}
+
+.categoria-nombre {
+    font-weight: 500;
+    color: #374151;
+}
+
+.categoria-monto {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Resumen Rápido */
+#porCategoria .categoria-item {
+    padding: 0.5rem 0;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Modal */
+.modal-content {
+    border-radius: var(--border-radius);
+    border: none;
+    box-shadow: var(--box-shadow);
+}
+
+.modal-header {
+    border-bottom: 1px solid #e5e7eb;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.modal-title {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .balance-amount {
+        font-size: 2rem;
+    }
+
+    .container-fluid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .row {
+        margin-bottom: 0 !important;
+    }
+
+    .transaccion-item {
+        padding: 0.75rem;
+    }
+
+    .transaccion-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .balance-amount {
+        font-size: 1.75rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .row {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+    }
+
+    .col-md-6,
+    .col-md-4 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .transaccion-item {
+        padding: 0.5rem;
+        border-radius: 4px;
+    }
+
+    .transaccion-acciones {
+        flex-wrap: wrap;
+    }
+
+    h5 {
+        font-size: 1.1rem;
+    }
+
+    h6 {
+        font-size: 0.95rem;
+    }
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.transaccion-item {
+    animation: slideIn 0.3s ease;
+}
+
+/* Scrollbar Personalizado */
+#historialTransacciones::-webkit-scrollbar {
+    width: 8px;
+}
+
+#historialTransacciones::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+#historialTransacciones::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+#historialTransacciones::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Transiciones suaves */
+* {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}

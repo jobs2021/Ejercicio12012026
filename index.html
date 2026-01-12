@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Wallet Digital</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-gradient">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <i class="fas fa-wallet me-2"></i>Mi Wallet Digital
+            </span>
+            <span class="text-white">Gestor de Transacciones</span>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- Columna principal -->
+            <div class="col-lg-8">
+                <!-- Card de Saldo -->
+                <div class="card balance-card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-muted">Saldo Total</h5>
+                        <h2 class="card-text balance-amount" id="saldoTotal">$0.00</h2>
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <p class="text-muted small mb-1">Ingresos</p>
+                                <h5 class="text-success" id="totalIngresos">+$0.00</h5>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="text-muted small mb-1">Egresos</p>
+                                <h5 class="text-danger" id="totalEgresos">-$0.00</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario de Transacciones -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">
+                            <i class="fas fa-plus-circle me-2"></i>Nueva Transacción
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="formularioTransaccion">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="descripcion" class="form-label">Descripción</label>
+                                    <input type="text" class="form-control" id="descripcion" placeholder="Ej: Salario, Compras..." required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cantidad" class="form-label">Cantidad</label>
+                                    <input type="number" class="form-control" id="cantidad" placeholder="0.00" step="0.01" min="0" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="categoria" class="form-label">Categoría</label>
+                                    <select class="form-select" id="categoria" required>
+                                        <option value="">-- Selecciona categoría --</option>
+                                        <option value="Salario">Salario</option>
+                                        <option value="Comida">Comida</option>
+                                        <option value="Transporte">Transporte</option>
+                                        <option value="Entretenimiento">Entretenimiento</option>
+                                        <option value="Servicios">Servicios</option>
+                                        <option value="Educación">Educación</option>
+                                        <option value="Otros">Otros</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="tipo" class="form-label">Tipo</label>
+                                    <select class="form-select" id="tipo" required>
+                                        <option value="">-- Selecciona tipo --</option>
+                                        <option value="Ingreso">Ingreso</option>
+                                        <option value="Egreso">Egreso</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="fecha" class="form-label">Fecha</label>
+                                <input type="date" class="form-control" id="fecha" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-plus me-2"></i>Agregar Transacción
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Historial de Transacciones -->
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h5 class="mb-0">
+                                    <i class="fas fa-history me-2"></i>Historial de Transacciones
+                                </h5>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-sm btn-outline-danger" id="limpiarHistorial">
+                                    <i class="fas fa-trash me-1"></i>Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                        <div id="historialTransacciones">
+                            <p class="text-muted text-center">No hay transacciones aún</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna lateral - Estadísticas -->
+            <div class="col-lg-4">
+                <!-- Card de Categorías -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">
+                            <i class="fas fa-chart-pie me-2"></i>Por Categoría
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="porCategoria">
+                            <p class="text-muted text-center small">Sin datos aún</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card de Resumen Rápido -->
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>Resumen Rápido
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <small class="text-muted">Total de Transacciones</small>
+                            <h6 id="totalTransacciones">0</h6>
+                        </div>
+                        <div class="mb-3">
+                            <small class="text-muted">Última Transacción</small>
+                            <h6 id="ultimaTransaccion">-</h6>
+                        </div>
+                        <div class="mb-3">
+                            <small class="text-muted">Promedio por Categoría</small>
+                            <h6 id="promedioCategorias">$0.00</h6>
+                        </div>
+                        <button class="btn btn-sm btn-outline-secondary w-100" id="exportarDatos">
+                            <i class="fas fa-download me-1"></i>Exportar Datos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Edición -->
+    <div class="modal fade" id="modalEdicion" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Transacción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formularioEdicion">
+                        <input type="hidden" id="idTransaccion">
+                        <div class="mb-3">
+                            <label for="editDescripcion" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="editDescripcion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCantidad" class="form-label">Cantidad</label>
+                            <input type="number" class="form-control" id="editCantidad" step="0.01" min="0" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCategoria" class="form-label">Categoría</label>
+                            <select class="form-select" id="editCategoria" required>
+                                <option value="Salario">Salario</option>
+                                <option value="Comida">Comida</option>
+                                <option value="Transporte">Transporte</option>
+                                <option value="Entretenimiento">Entretenimiento</option>
+                                <option value="Servicios">Servicios</option>
+                                <option value="Educación">Educación</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="guardarEdicion">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container-fluid text-center text-muted">
+            <small>&copy; 2026 Mi Wallet Digital. Todos los derechos reservados.</small>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JS personalizado -->
+    <script src="script.js"></script>
+</body>
+</html>
