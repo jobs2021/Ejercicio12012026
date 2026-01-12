@@ -26,11 +26,13 @@ body {
 .navbar {
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)) !important;
     box-shadow: var(--box-shadow);
+    ;
 }
 
 .navbar-brand {
     font-weight: 700;
     font-size: 1.5rem;
+    color: black;
 }
 
 /* Contenedor Principal */
